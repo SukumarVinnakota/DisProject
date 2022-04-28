@@ -214,6 +214,7 @@
     <Content Include="Views\VehicleRegistration\OrderByModel.cshtml" />
     <Content Include="Views\VehicleRegistration\Delete.cshtml" />
     <Content Include="Views\VehicleRegistration\Edit.cshtml" />
+    <Content Include="Views\VehicleRegistration\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

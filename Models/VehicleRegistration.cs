@@ -31,6 +31,7 @@ namespace DisProject.Models
         [Display(Name = "Vehicle Type")]
         public string VehicleType { get; set; }
         [Required]
+        [Display(Name = "Clean Alternative Fuel Vehicle (CAFV) Eligibility")]
         public string CAFV { get; set; }
         [Required]
         [Display(Name = "Range")]
@@ -38,8 +39,6 @@ namespace DisProject.Models
         [Required]
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
-        [Required]
-        [StringLength(2, MinimumLength = 2)]
         public string State { get; set; }
         [Required]
         [Display(Name = "Registration Id")]

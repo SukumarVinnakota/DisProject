@@ -21,9 +21,14 @@ namespace DisProject.Controllers
         }
 
         // GET: VehicleRegistration/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(String id=null)
         {
-            return View();
+            VehicleRegistration vg = db.VehicleRegistrations.Find(id);
+            if (vg == null)
+            {
+                return HttpNotFound();
+            }
+            return View(vg);
         }
 
         public ActionResult OrderByModel()
@@ -53,11 +58,22 @@ namespace DisProject.Controllers
                 
                 var items = db.Cities.ToList();
                 ViewBag.data = items;
-                db.VehicleRegistrations.Add(vg);
-                db.SaveChanges();
-                // TODO: Add insert logic here
-               //   return RedirectToAction("Index");
-                return RedirectToAction("Index");
+                vg.State = "WA";
+                ViewBag.error = "";
+                VehicleRegistration vgs = db.VehicleRegistrations.Find(vg.VehcileRegistrationId);
+                if (vgs == null)
+                {
+                    db.VehicleRegistrations.Add(vg);
+                    db.SaveChanges();
+                    // TODO: Add insert logic here
+                    //   return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Vehicle is already registerd";
+                    return View();
+                }
             }
             catch (DbEntityValidationException e)
             {

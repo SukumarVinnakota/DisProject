@@ -15,11 +15,11 @@
     <h4>VehicleRegistration</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+   <b> @ViewBag.error</b>
     <div class="form-group">
         @Html.LabelFor(model => model.VehcileRegistrationId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.VehcileRegistrationId, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g:1G1RC6E45F" ,  title = "Vehicle Identification Number (VIN)" } })
+            @Html.EditorFor(model => model.VehcileRegistrationId, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g:1G1RC6E45F" ,  title = "Vehicle Identification Number (VIN)" , maxlength = "10" } })
             @Html.ValidationMessageFor(model => model.VehcileRegistrationId, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -37,7 +37,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Zip, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: 33613" } })
+            @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: 33613",title= "The 5 digit zip code in which the registered owner resides.", maxlength = "5" } })
             @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -45,7 +45,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ModelYear, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ModelYear, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: 2020" } })
+            @Html.EditorFor(model => model.ModelYear, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: 2020",title= "The model year of the vehicle, determined by decoding the Vehicle Identification Number (VIN).", maxlength = "4" } })
             @Html.ValidationMessageFor(model => model.ModelYear, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -53,7 +53,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Make, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Tesla" } })
+            @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Tesla",title= "The manufacturer of the vehicle, determined by decoding the Vehicle Identification Number (VIN).", maxlength = "20" } })
             @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -61,7 +61,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Model s" } })
+            @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Model s",title= "The model of the vehicle, determined by decoding the Vehicle Identification Number (VIN).",maxlength = "10" } })
             @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -69,7 +69,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.VehicleType, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.VehicleType, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Plug-in Hybrid Electric Vehicle" } })
+            @Html.EditorFor(model => model.VehicleType, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Plug-in Hybrid or Electric Vehicle",title= "This distinguishes the vehicle as all electric or a plug-in hybrid.", maxlength = "10" } })
             @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -77,7 +77,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.CAFV, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.CAFV, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Clean Alternative Fuel Vehicle Eligible" } })
+            @Html.EditorFor(model => model.CAFV, new { htmlAttributes = new { @class = "form-control",maxlength=10, @placeholder = "E.g: Clean Alternative Fuel Vehicle Eligible" ,title= "This categorizes vehicle as Clean Alternative Fuel Vehicles (CAFVs) based on the fuel requirement and electric-only range requirement in House Bill 2042 as passed in the 2019 legislative session." } })
             @Html.ValidationMessageFor(model => model.CAFV, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -85,7 +85,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ElectricRange, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ElectricRange, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: 322" } })
+            @Html.EditorFor(model => model.ElectricRange, new { htmlAttributes = new { @class = "form-control", maxlength = "3", @placeholder = "E.g: 322",title= "Describes how far a vehicle can travel purely on its electric charge." } })
             @Html.ValidationMessageFor(model => model.ElectricRange, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -93,7 +93,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AddressLine1, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Address" } })
+            @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control", maxlength = "200", @placeholder = "Enter the Address",title= "The address in which the registered owner resides." } })
             @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -101,7 +101,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AddressLine2, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control", maxlength = "200" } })
             @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -109,7 +109,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: WS" } })
+            @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: WA" ,title= "The state in which the registered owner resides.", @disabled = "disabled", @Value = "WA" } })
             @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
         </div>
     </div>
