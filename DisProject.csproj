@@ -136,6 +136,7 @@
     <Compile Include="Models\City.cs">
       <DependentUpon>VehcileRegistration.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\VehcileRegistration.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

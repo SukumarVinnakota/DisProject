@@ -4,69 +4,175 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>VehicleRegistration</h4>
+<div class="container">
+    <a href="./" class="btn btn-success" role="button">
+        <span class="glyphicon glyphicon-chevron-left"></span>Back to List
+    </a>
+</div>
+<div class="container">
+    <h4>Vehicle Registration Details</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <div class="form-group form-inline col-sm-12">
+        <div class="col-sm-3">
+            <label for="make">Vehicle Identification Number</label>
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(model => model.VehcileRegistrationId, new { htmlAttributes = new { @disabled = "disabled", title = "The manufacturer of the vehicle, determined by decoding the Vehicle Identification Number (VIN)." } })
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <label for="make">Vehicle Manufacturer</label>
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(model => model.Make, new { htmlAttributes = new { @disabled = "disabled", title = "The manufacturer of the vehicle, determined by decoding the Vehicle Identification Number (VIN)." } })
+        </div>      
+    </div>
+    <div class="form-group form-inline col-sm-12">
+        <div class="col-sm-3">
+            <label for="year">Model year</label>
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(model => model.ModelYear, new { htmlAttributes = new { @disabled = "disabled", title = "The model year of the vehicle, determined by decoding the Vehicle Identification Number (VIN)." } })
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <label for="model">Vehicle Model</label>
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(model => model.Model, new { htmlAttributes = new { @disabled = "disabled", title = "The model of the vehicle, determined by decoding the Vehicle Identification Number (VIN)." } })
+        </div>
+    </div>
+    <div class="form-group form-inline col-sm-12">
+        <div class="col-sm-3">
+            <label for="evt">Electric Vehicle Type</label>
+        </div>
+        <div class="col-sm-3">
+            @Html.DisplayFor(model => model.VehicleType, new { htmlAttributes = new { @disabled = "disabled", title = "This distinguishes the vehicle as all electric or a plug-in hybrid." } })
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <label for="range">Electric Range</label>
+        </div>
+        <div class="col-sm-3">
+            @Html.DisplayFor(model => model.ElectricRange, new { htmlAttributes = new { @disabled = "disabled", title = "Describes how far a vehicle can travel purely on its electric charge." } })
+        </div>
+    </div>
+    <div class="form-group form-inline col-sm-12">
+        <div class="col-sm-3">
+            <label for="capv">Clean Alternative Fuel Vehicle (CAFV) Eligibility  </label>
+        </div>
+        <div class="col-sm-3">
+            @Html.DisplayFor(model => model.CAFV, new { htmlAttributes = new { @disabled = "disabled", title = "This categorizes vehicle as Clean Alternative Fuel Vehicles (CAFVs) based on the fuel requirement and electric-only range requirement in House Bill 2042 as passed in the 2019 legislative session." } })
+        </div>
+    </div>
+    <div class="form-group form-inline col-sm-12">
+        <div class="col-sm-3">
+            <label for="ad1">Address Line1</label>
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(model => model.AddressLine1, new { htmlAttributes = new { @disabled = "disabled", title = "The address in which the registered owner resides." } })
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <label for="ad2">Address Line 2</label>
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(model => model.AddressLine2)
+        </div>
+    </div>
+    <div class="form-group form-inline col-sm-12">
+        <div class="col-sm-3">
+            <label for="evt">City</label>
+        </div>
+        <div class="col-sm-3">
+            @Html.DisplayFor(model => model.City.CityName, new { htmlAttributes = new { @disabled = "disabled", title = "The city in which the registered owner resides" } })
+        </div>
+    </div>
+    <div class="form-group form-inline col-sm-12">
+        <div class="col-sm-3">
+            <label for="state">State</label>
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(model => model.State, new { htmlAttributes = new { title = "The state in which the registered owner resides.", @disabled = "disabled", @Value = "WA" } })
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <label for="zip">ZIP</label>
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(model => model.Zip, new { htmlAttributes = new { @disabled = "disabled", title = "The 5 digit zip code in which the registered owner resides.", maxlength = "5" } })
+        </div>
+    </div>
+    <div class="col-sm-5"></div>
+    <div class="col-sm-2">
+        <br>  @Html.ActionLink("Edit", "Edit", new { id = Model.VehcileRegistrationId })
+    </div>
+    <!--<div class="col-sm-2">
+        <br>-->   @* @Html.ActionLink("Back to List", "Index")*@
+        <!--<a href="./VehicleRegistration" class="btn btn-success" role="button">
+            <span class="glyphicon glyphicon-chevron-left"></span>Back to List
+        </a>
+    </div>
+    <div class="col-sm-5"></div>-->
+</div>
+    @*<dl class="dl-horizontal">*@
+    @*<dt>
             @Html.DisplayNameFor(model => model.Zip)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Zip)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @* <dt>
             @Html.DisplayNameFor(model => model.ModelYear)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ModelYear)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @* <dt>
             @Html.DisplayNameFor(model => model.Make)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Make)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @* <dt>
             @Html.DisplayNameFor(model => model.Model)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Model)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @*<dt>
             @Html.DisplayNameFor(model => model.VehicleType)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.VehicleType)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @* <dt>
             @Html.DisplayNameFor(model => model.CAFV)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CAFV)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @*<dt>
             @Html.DisplayNameFor(model => model.ElectricRange)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ElectricRange)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @* <dt>
             @Html.DisplayNameFor(model => model.AddressLine1)
         </dt>
 
@@ -80,27 +186,23 @@
 
         <dd>
             @Html.DisplayFor(model => model.AddressLine2)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @*<dt>
             @Html.DisplayNameFor(model => model.State)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.State)
-        </dd>
+        </dd>*@
 
-        <dt>
+    @* <dt>
             @Html.DisplayNameFor(model => model.City.CityName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.City.CityName)
-        </dd>
+        </dd>*@
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.VehcileRegistrationId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    @* </dl>*@
+

@@ -10,7 +10,11 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+<div class="container">
+    <a href="/VehicleRegistration" class="btn btn-success" role="button">
+        <span class="glyphicon glyphicon-chevron-left"></span>Back to List
+    </a>
+</div>
     <div class="form-horizontal">
         <h4>VehicleRegistration</h4>
         <hr />

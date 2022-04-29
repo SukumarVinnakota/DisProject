@@ -1,95 +1,249 @@
-﻿@model IEnumerable<DisProject.Models.VehicleRegistration>
+﻿@*
+    @model IEnumerable<DisProject.Models.VehicleRegistration>
+
+    @{
+        ViewBag.Title = "OrderByModel";
+    }
+
+    <h2>OrderByModel</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Zip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Make)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CAFV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElectricRange)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City.CityName)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Zip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Make)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CAFV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElectricRange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressLine1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressLine2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.CityName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.VehcileRegistrationId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.VehcileRegistrationId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.VehcileRegistrationId })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@
+
+@model IEnumerable<DisProject.Models.VehicleRegistration>
 
 @{
-    ViewBag.Title = "OrderByModel";
+    ViewBag.Title = "Index";
 }
 
-<h2>OrderByModel</h2>
+<h2>Index</h2>
 
+
+<div class="container">
+    <div class="col-sm-12">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <a href="./Create" class="btn btn-success" role="button" title="Register a Vehicle" data-toggle="tooltip">Register a Vehicle</a>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <a href="./Update_Vehcile.html" class="btn btn-success" role="button" title="Edit/Update Vehicle Registration" data-toggle="tooltip">Edit/Update Vehicle Registration</a>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <a href="./Delete_Vehcile.html" class="btn btn-success" role="button" title="Delete Vehicle Registration" data-toggle="tooltip">Delete Vehicle Registration</a>
+        </div>
+    </div>
+</div>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Delete", "VehicleRegistration", FormMethod.Get))
+    {
+        <b>Search Option:</b> @Html.TextBox("id") <input type="submit" value="search" />
+    }
 </p>
-<table class="table">
-    <tr>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.Zip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModelYear)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Make)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VehicleType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CAFV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ElectricRange)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AddressLine1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AddressLine2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City.CityName)
-        </th>
-        <th></th>
-    </tr>
+<br>
+<br>
+<div class="container">
+    <p style="font-size: 15px;"><b> Below is the list of Electronic Vehicles registerd in Washington State.</b> </p>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Vehicle Id</th>
+                <th>City</th>
+                <th>Manufacturer</th>
+                <th><a href="./OrderByModel">Model</a></th>
+                <th>Model Year</th>
+                <th>Electric Vehicle Type</th>
+            </tr>
+        </thead>
 
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Zip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModelYear)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Make)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CAFV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ElectricRange)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AddressLine1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AddressLine2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City.CityName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VehcileRegistrationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VehcileRegistrationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VehcileRegistrationId })
-        </td>
-    </tr>
-}
+        <!--<tr>
+        <th>-->
+        @* @Html.DisplayNameFor(model => model.Zip)*@
+        <!--</th>
+        <th>-->
+        @*  @Html.DisplayNameFor(model => model.ModelYear)
+            </th>*@
+        <!--<th>-->
+        @* @Html.DisplayNameFor(model => model.Make)*@
+        <!--</th>
+        <th>-->
+        @*  @Html.ActionLink("Model", "OrderByModel")*@
+        @*@Html.DisplayNameFor(model => model.Model)*@
+        <!--</th>
+            <th>
+              @*  @Html.DisplayNameFor(model => model.VehicleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CAFV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElectricRange)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehcileRegistrationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City.CityName) *@
+            </th>
+            <th></th>
+        </tr>-->
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehcileRegistrationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Make)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                @* <td>
+                        @Html.DisplayFor(modelItem => item.Zip)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Make)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VehicleType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CAFV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ElectricRange)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddressLine1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddressLine2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VehcileRegistrationId)
+                    </td>
+                *@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VehcileRegistrationId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.VehcileRegistrationId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VehcileRegistrationId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
