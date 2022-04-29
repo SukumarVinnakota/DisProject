@@ -110,6 +110,7 @@ namespace DisProject.Controllers
         public ActionResult Edit(VehicleRegistration vg)
         {
             var items = db.Cities.ToList();
+            vg.State = "WA";
             ViewBag.data = items;
             if (ModelState.IsValid)
             {
