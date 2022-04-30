@@ -74,7 +74,7 @@
           <Property Name="CAFV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ElectricRange" Type="Int32" Nullable="false" />
           <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="City" Relationship="Self.fk_City" FromRole="VehicleRegistration" ToRole="City" />
           <Property Name="VehcileRegistrationId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />

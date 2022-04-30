@@ -5,9 +5,186 @@
 }
 
 @*<h2>Create</h2>*@
+<script>
+    function myFunction() {
+        var VehcileRegistrationId = document.getElementById("VehcileRegistrationId").value;
+        var make = document.getElementById("Make").value;
+        var modelYear = document.getElementById("ModelYear").value;
+        var model = document.getElementById("Model").value;
+        var ElectricRange = document.getElementById("ElectricRange").value;
+        var VehicleType = document.getElementById("VehicleType").value;
+        var cafv = document.getElementById("CAFV").value;
+        var addressLine1 = document.getElementById("AddressLine1").value;
+        var addressLine2 = document.getElementById("AddressLine2").value;
+        var e = document.getElementById("CityId");
+        var city = e.options[e.selectedIndex].value;
+        var zip = document.getElementById("Zip").value;
+        var isError = false;
 
+        @* Model Validation *@
+        if (model == "") {
+            alert("Please enter car model");
+            isError = true;
+        } else if (model.length > 20) {
+            alert(" Name of the car model should be less than 20 charecters");
+            isError = true;
+        }
+        else {
+            var regex = /^[a-zA-Z\s]+$/;
+            if (regex.test(model) === false) {
+                alert("Please enter a valid Model");
+                isError = true;
+            } else {
+                isError = false;
+            }
+        }
 
-@using (Html.BeginForm())
+        @* Make Validation *@
+        if (make == "") {
+            alert("Please enter car manufacturer");
+            isError = true;
+        } else if (model.length > 20) {
+            alert(" Name of the car manufacturer should be less than 20 charecters");
+            isError = true;
+        }
+        else {
+            var regex = /^[a-zA-Z\s]+$/;
+            if (regex.test(model) === false) {
+                alert("Please enter a valid car manufacturer");
+                isError = true;
+            } else {
+                isError = false;
+            }
+        }
+
+        @* Vehicle registration *@
+        if (VehcileRegistrationId == "") {
+            alert("Please enter vehicle identification number");
+            isError = true;
+        } else if (VehcileRegistrationId.length != 10) {
+            alert(" Vehicle identification number should be 10 charecters");
+            isError = true;
+        }
+        else {
+            var regex = /^[a-zA-Z0-9\s]+$/;
+            if (regex.test(VehcileRegistrationId) === false) {
+                alert("Please enter a valid Vehicle identification number");
+                isError = true;
+            } else {
+                isError = false;
+            }
+        }
+
+        @* Model Year *@
+        if (modelYear == "") {
+            alert("Please enter Model Year");
+            isError = true;
+        } else if (modelYear.length != 4) {
+            alert("Model Year should be of 4 charecters");
+            isError = true;
+        }
+        else {
+            var regex = /^[0-9\s]+$/;
+            if (regex.test(modelYear) === false) {
+                alert("Please enter a valid Model Year");
+                isError = true;
+            } else {
+                isError = false;
+            }
+        }
+
+        @* Electric Range *@
+        if (ElectricRange == "") {
+            alert("Please enter Range of Electric Vehicle");
+            isError = true;
+        } else if (ElectricRange.length > 3) {
+            alert(" Please enter valid Range of Electric Vehicle");
+            isError = true;
+        }
+        else {
+            var regex = /^[0-9\s]+$/;
+            if (regex.test(modelYear) === false) {
+                alert("Please enter valid Range of Electric Vehicle");
+                isError = true;
+            } else {
+                isError = false;
+            }
+        }
+
+        @* VehicleType *@
+        if (VehicleType == "") {
+            alert("Please enter Type of Electric Vehicle");
+            isError = true;
+        }
+        else {
+            var regex = /^[a-zA-Z\s]+$/;
+            if (regex.test(VehicleType) === false) {
+                alert("Please enter valid Type of Electric Vehicle");
+                isError = true;
+            } else {
+                isError = false;
+            }
+        }
+
+        @* cafv *@
+        if (cafv == "") {
+            alert("Please enter Clean Alternative Fuel Vehicle (CAFV) Eligibility");
+            isError = true;
+        }
+        else {
+            var regex = /^[a-zA-Z\s]+$/;
+            if (regex.test(VehicleType) === false) {
+                alert("Please enter valid Clean Alternative Fuel Vehicle (CAFV) Eligibility");
+                isError = true;
+            } else {
+                isError = false;
+            }
+        }
+
+        @* AddresssLine1 *@
+        if (addressLine1 == "") {
+            alert("Please enter Address");
+            isError = true;
+        }
+        else {
+                isError = false;
+            
+        }
+
+        @* city *@
+        if (city == "0") {
+            alert("Please select a city");
+            isError = true;
+        }
+        else {
+            isError = false;
+
+        }
+
+        @* zip *@
+        if (zip == "") {
+            alert("Please enter Zip code");
+            isError = true;
+        } else if (modelYear.length == 5) {
+            alert("Zip code should be 5 charecters");
+            isError = true;
+        }
+        else {
+            var regex = /^[0-9\s]+$/;
+            if (regex.test(modelYear) === false) {
+                alert("Please enter a valid Zip code");
+                isError = true;
+            } else {
+                isError = false;
+            }
+        }
+        if (!isError) {
+          document.getElementById("signupform").submit();
+        }
+    }
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signupform" }))
 {
     @Html.AntiForgeryToken()
 
@@ -229,7 +406,7 @@
             </div>*@
         <div class="col-sm-5"></div>
         <div class="col-sm-2">
-            <br> <input type="submit" value="Create" class="btn btn-success" role="button" data-toggle="tooltip" title="Create" />
+            <br> <input type="button" value="Create" class="btn btn-success" role="button" data-toggle="tooltip" title="Create" onclick="myFunction()"/>
         </div>
         <!--<div class="col-sm-2">
             <br>-->
