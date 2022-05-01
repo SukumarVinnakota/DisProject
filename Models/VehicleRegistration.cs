@@ -11,39 +11,22 @@ namespace DisProject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class VehicleRegistration
     {
-        [Required]
-        [Display(Name = "City Name")]
         public int CityId { get; set; }
-        [Required]
         public int Zip { get; set; }
-        [Required]
-        [Display(Name = "Model Year")]
         public string ModelYear { get; set; }
-        [Required]
         public string Make { get; set; }
-        [Required]
         public string Model { get; set; }
-        [Required]
-        [Display(Name = "Vehicle Type")]
         public string VehicleType { get; set; }
-        [Required]
-        [Display(Name = "Clean Alternative Fuel Vehicle (CAFV) Eligibility")]
         public string CAFV { get; set; }
-        [Required]
-        [Display(Name = "Range")]
         public int ElectricRange { get; set; }
-        [Required]
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
         public string State { get; set; }
-        [Required]
-        [Display(Name = "Registration Id")]
         public string VehcileRegistrationId { get; set; }
-
+    
         public virtual City City { get; set; }
     }
 }

@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CAFV.cs" />
     <Compile Include="Models\City.cs">
       <DependentUpon>VehcileRegistration.tt</DependentUpon>
     </Compile>

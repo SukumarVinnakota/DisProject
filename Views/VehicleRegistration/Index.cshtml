@@ -6,12 +6,12 @@
 
 @*<h2>Index</h2>*@
 
-
+<br />
 <div class="container">
     <div class="col-sm-12">
         <div class="col-sm-1"></div>
         <div class="col-sm-3">
-            <a href="./VehicleRegistration/Create" class="btn btn-success" role="button" title="Register a Vehicle" data-toggle="tooltip">Register a Vehicle</a>
+            <a href="/VehicleRegistration/Create" class="btn btn-success" role="button" title="Register a Vehicle" data-toggle="tooltip">Register a Vehicle</a>
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-3">
@@ -23,6 +23,7 @@
         </div>
     </div>
 </div>
+<br />
 <p>
     @using (Html.BeginForm("Delete", "VehicleRegistration", FormMethod.Get))
     {
@@ -39,7 +40,7 @@
                 <th>Vehicle Id</th>
                 <th>City</th>
                 <th>Manufacturer</th>
-                <th><a href="./OrderByModel">Model</a></th>
+                <th><a href="/VehicleRegistration/OrderByModel">Model</a></th>
                 <th>Model Year</th>
                 <th>Electric Vehicle Type</th>
             </tr>

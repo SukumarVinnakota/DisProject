@@ -42,7 +42,7 @@ namespace DisProject.Controllers
         public ActionResult Create()
         {
              var items = db.Cities.ToList();
-            if (items != null)
+            if (items != null )
             {
                 ViewBag.data = items;
             }
@@ -59,6 +59,8 @@ namespace DisProject.Controllers
                 var items = db.Cities.ToList();
                 ViewBag.data = items;
                 vg.State = "WA";
+                vg.Make.Trim().ToUpper();
+                vg.Model.Trim();
                 ViewBag.error = "";
                 VehicleRegistration vgs = db.VehicleRegistrations.Find(vg.VehcileRegistrationId);
                 if (vgs == null)
