@@ -4,9 +4,14 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Dynamic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using DisProject.Models;
+using System.Diagnostics;
+using Newtonsoft.Json;
+using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DisProject.Controllers
 {
@@ -16,7 +21,13 @@ namespace DisProject.Controllers
         // GET: VehicleRegistration
         public ActionResult Index()
         {
-            var registration = db.VehicleRegistrations.ToList();
+            var registration = db.VehicleRegistrations.Take(50).ToList();
+            return View(registration);
+        }
+        
+        public ActionResult Search(String id = null)
+        {
+            var registration = db.VehicleRegistrations.Where(p => p.VehcileRegistrationId.Contains(id));
             return View(registration);
         }
 
@@ -59,8 +70,7 @@ namespace DisProject.Controllers
                 var items = db.Cities.ToList();
                 ViewBag.data = items;
                 vg.State = "WA";
-                vg.Make.Trim().ToUpper();
-                vg.Model.Trim();
+                if (vg.AddressLine2.Equals(null)) vg.AddressLine2 = " ";
                 ViewBag.error = "";
                 VehicleRegistration vgs = db.VehicleRegistrations.Find(vg.VehcileRegistrationId);
                 if (vgs == null)
@@ -111,16 +121,38 @@ namespace DisProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(VehicleRegistration vg)
         {
-            var items = db.Cities.ToList();
-            vg.State = "WA";
-            ViewBag.data = items;
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(vg).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var items = db.Cities.ToList();
+                vg.State = "WA";
+                vg.Make.Trim().ToUpper();
+                vg.Model.Trim();
+                if (vg.AddressLine2.Equals(null)) vg.AddressLine2 = " ";
+                ViewBag.data = items;
+                if (ModelState.IsValid)
+                {
+                    db.Entry(vg).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(vg);
             }
-            return View(vg);
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                //Console.WriteLine("AN ERROR OCCURED IN COPYING CHROMEPASSFILE: " + EX.Message);
+                return View();
+            }
         }
         // POST: VehicleRegistration/Edit/5
        /* [HttpPost]
@@ -172,6 +204,92 @@ namespace DisProject.Controllers
             VehicleRegistration vg = db.VehicleRegistrations.Find(id);
             db.VehicleRegistrations.Remove(vg);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Api()
+        {
+            HttpClient httpClient;
+
+            string BASE_URL = "https://data.wa.gov/resource/f6w7-q2d2.json";
+            httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            string NATIONAL_PARK_API_PATH = BASE_URL;
+            string parksData = "";
+
+            List<API> parks = null;
+            VehicleRegistration vg = new VehicleRegistration();
+            //httpClient.BaseAddress = new Uri(NATIONAL_PARK_API_PATH);
+            httpClient.BaseAddress = new Uri(NATIONAL_PARK_API_PATH);
+
+            try
+            {
+                //HttpResponseMessage response = httpClient.GetAsync(NATIONAL_PARK_API_PATH)
+                //                                        .GetAwaiter().GetResult();
+                HttpResponseMessage response = httpClient.GetAsync(NATIONAL_PARK_API_PATH)
+                                                        .GetAwaiter().GetResult();
+
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    parksData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                }
+
+                if (!parksData.Equals(""))
+                {
+                    // JsonConvert is part of the NewtonSoft.Json Nuget package
+                    parks = JsonConvert.DeserializeObject<API[]>(parksData).ToList();
+                }
+                List<City> c = db.Cities.ToList();
+
+                foreach (var a in parks)
+                {
+                    if (a.state.Equals("WA"))
+                    {
+                        City cc = new City();
+                        foreach (var bb in c)
+                        {
+                            if (a.city.Equals(bb.CityName))
+                            {
+                                vg.CityId = bb.CityId;
+                                cc.CityId = bb.CityId;
+                                cc.CityName = bb.CityName;
+                                break;
+                            }
+                        }
+                        vg.City = cc;
+                        vg.VehcileRegistrationId = a.vin_1_10;
+                        vg.Zip = Int32.Parse(a.zip_code);
+                        vg.ModelYear = a.model_year;
+                        vg.Make = a.make;
+                        vg.Model = a.model;
+                        vg.VehicleType = a.ev_type;
+                        vg.CAFV = a.cafv_type;
+                        vg.ElectricRange = Int32.Parse(a.electric_range);
+                        vg.AddressLine1 = " ";
+                        vg.AddressLine2 = " ";
+                        vg.State = a.state;
+                        db.VehicleRegistrations.Add(vg);
+                        db.SaveChanges();
+                        Console.WriteLine("hi");
+                    }
+                   // db.VehicleRegistrations.Add(vg);
+                    //db.SaveChanges();
+                }
+
+                // db.API.Add(parks);
+                //await db.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                // This is a useful place to insert a breakpoint and observe the error message
+                Console.WriteLine(e.Message);
+            }
+
             return RedirectToAction("Index");
         }
     }

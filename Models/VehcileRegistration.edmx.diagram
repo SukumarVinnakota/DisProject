@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ac6c142b3cd44a9ea5d7a48d78bb350d" Name="Diagram1">
         <EntityTypeShape EntityType="ProjectModel.City" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.VehicleRegistration" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.VehicleRegistration" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="ProjectModel.fk_City" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

@@ -27,7 +27,7 @@ namespace DisProject.Controllers
             foreach (var items in summaryApproach1)
             {
                 int a = items.Count;
-                int per = a * 100 / h;
+                double per = a * 100 / h;
                 dataPoints.Add(new DataPoint(items.Category, per));
             }
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);

@@ -70,11 +70,11 @@
           <Property Name="ModelYear" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Make" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="VehicleType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VehicleType" Type="String" FixedLength="false" Unicode="true" Nullable="false" MaxLength="200" />
           <Property Name="CAFV" Type="String" Nullable="false" />
           <Property Name="ElectricRange" Type="Int32" Nullable="false" />
           <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="true" />
           <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="City" Relationship="Self.fk_City" FromRole="VehicleRegistration" ToRole="City" />
           <Property Name="VehcileRegistrationId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />

@@ -19,166 +19,139 @@
         var e = document.getElementById("CityId");
         var city = e.options[e.selectedIndex].value;
         var zip = document.getElementById("Zip").value;
-        var isError = false;
+        var count = 0;
 
-        @* Model Validation *@
-        if (model == "") {
-            alert("Please enter car model");
-            isError = true;
-        } else if (model.length > 20) {
-            alert(" Name of the car model should be less than 20 charecters");
-            isError = true;
-        }
-        else {
-            var regex = /^[a-zA-Z\s]+$/;
-            if (regex.test(model) === false) {
-                alert("Please enter a valid Model");
-                isError = true;
-            } else {
-                isError = false;
-            }
-        }
-
-        @* Make Validation *@
-        if (make == "") {
-            alert("Please enter car manufacturer");
-            isError = true;
-        } else if (model.length > 20) {
-            alert(" Name of the car manufacturer should be less than 20 charecters");
-            isError = true;
-        }
-        else {
-            var regex = /^[a-zA-Z\s]+$/;
-            if (regex.test(model) === false) {
-                alert("Please enter a valid car manufacturer");
-                isError = true;
-            } else {
-                isError = false;
-            }
-        }
 
         @* Vehicle registration *@
         if (VehcileRegistrationId == "") {
             alert("Please enter vehicle identification number");
-            isError = true;
         } else if (VehcileRegistrationId.length != 10) {
             alert(" Vehicle identification number should be 10 charecters");
             isError = true;
         }
-        else {
+        else  {
             var regex = /^[a-zA-Z0-9\s]+$/;
             if (regex.test(VehcileRegistrationId) === false) {
                 alert("Please enter a valid Vehicle identification number");
-                isError = true;
             } else {
-                isError = false;
+                count = count + 1;
+            }
+        }
+        @* Make Validation *@
+        if (make == "") {
+            alert("Please enter vehicle manufacturer");
+        } else if (make.length > 20) {
+            alert(" Name of the vechicle manufacturer should be less than 20 charecters");
+        }
+        else if (make != "") {
+            var regex = /^[a-zA-Z\s]+$/;
+            if (regex.test(make) === false) {
+                alert("Please enter a valid vehicle manufacturer");
+            } else {
+                count = count + 1;
             }
         }
 
         @* Model Year *@
         if (modelYear == "") {
             alert("Please enter Model Year");
-            isError = true;
         } else if (modelYear.length != 4) {
             alert("Model Year should be of 4 charecters");
-            isError = true;
         }
-        else {
+        else if (modelYear != "") {
             var regex = /^[0-9\s]+$/;
             if (regex.test(modelYear) === false) {
                 alert("Please enter a valid Model Year");
-                isError = true;
             } else {
-                isError = false;
+                count=count+1;
+            }
+        }
+
+        @* Model Validation *@
+        if (model == "") {
+            alert("Please enter car model");
+        } else if (model.length > 20) {
+            alert(" Name of the car model should be less than 20 charecters");
+        }
+        else if (model!=""){
+            var regex = /^[a-zA-Z\s]+$/;
+            if (regex.test(model) === false) {
+                alert("Please enter a valid Model");
+            } else {
+                count = count+1;
             }
         }
 
         @* Electric Range *@
         if (ElectricRange == "") {
             alert("Please enter Range of Electric Vehicle");
-            isError = true;
         } else if (ElectricRange.length > 3) {
             alert(" Please enter valid Range of Electric Vehicle");
-            isError = true;
         }
-        else {
+        else if (ElectricRange != ""){
             var regex = /^[0-9\s]+$/;
-            if (regex.test(modelYear) === false) {
+            if (regex.test(ElectricRange) === false) {
                 alert("Please enter valid Range of Electric Vehicle");
-                isError = true;
             } else {
-                isError = false;
+               count=count+1;
             }
         }
 
         @* VehicleType *@
-        if (VehicleType == "") {
+         if (VehicleType == "") {
             alert("Please enter Type of Electric Vehicle");
-            isError = true;
         }
-        else {
-            var regex = /^[a-zA-Z\s]+$/;
-            if (regex.test(VehicleType) === false) {
-                alert("Please enter valid Type of Electric Vehicle");
-                isError = true;
-            } else {
-                isError = false;
-            }
+        else if(VehicleType != ""){
+            count = count + 1;
+            
         }
 
         @* cafv *@
         if (cafv == "") {
             alert("Please enter Clean Alternative Fuel Vehicle (CAFV) Eligibility");
-            isError = true;
         }
-        else {
+        else if (cafv != ""){
             var regex = /^[a-zA-Z\s]+$/;
-            if (regex.test(VehicleType) === false) {
+            if (regex.test(cafv) === false) {
                 alert("Please enter valid Clean Alternative Fuel Vehicle (CAFV) Eligibility");
-                isError = true;
             } else {
-                isError = false;
+                count = count + 1;;
             }
         }
 
         @* AddresssLine1 *@
         if (addressLine1 == "") {
             alert("Please enter Address");
-            isError = true;
         }
-        else {
-                isError = false;
+        else if(addressLine1 != ""){
+            count = count + 1;
             
         }
 
         @* city *@
         if (city == "0") {
-            alert("Please select a city");
-            isError = true;
+            alert("Please select a city"); 
         }
-        else {
-            isError = false;
+        else if (city != "0"){
+            count = count + 1;
 
         }
 
         @* zip *@
         if (zip == "") {
             alert("Please enter Zip code");
-            isError = true;
-        } else if (modelYear.length == 5) {
+        } else if (zip.length != 5) {
             alert("Zip code should be 5 charecters");
-            isError = true;
         }
-        else {
+        else if (zip != ""){
             var regex = /^[0-9\s]+$/;
-            if (regex.test(modelYear) === false) {
+            if (regex.test(zip) === false) {
                 alert("Please enter a valid Zip code");
-                isError = true;
             } else {
-                isError = false;
+                count = count + 1;
             }
         }
-        if (!isError) {
+        if (count ==10) {
           document.getElementById("signupform").submit();
         }
     }
@@ -251,7 +224,7 @@
                 <label for="evt">Electric Vehicle Type</label>&nbsp;<label style="color: red;">*</label>
             </div>
             <div class="col-sm-3">
-                @Html.EditorFor(model => model.VehicleType, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Plug-in Hybrid or Electric Vehicle", title = "This distinguishes the vehicle as all electric or a plug-in hybrid.", maxlength = "10" } })
+                @Html.EditorFor(model => model.VehicleType, new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g: Plug-in Hybrid or Electric Vehicle", title = "This distinguishes the vehicle as all electric or a plug-in hybrid.", maxlength = "30" } })
                 @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -261,7 +234,7 @@
                 <label for="capv">Clean Alternative Fuel Vehicle (CAFV) Eligibility &nbsp;<label style="color: red;">*</label></label>
             </div>
             <div class="col-sm-3">
-                @Html.EditorFor(model => model.CAFV, new { htmlAttributes = new { @class = "form-control", maxlength = 10, @placeholder = "E.g: Clean Alternative Fuel Vehicle Eligible", title = "This categorizes vehicle as Clean Alternative Fuel Vehicles (CAFVs) based on the fuel requirement and electric-only range requirement in House Bill 2042 as passed in the 2019 legislative session." } })
+                @Html.EditorFor(model => model.CAFV, new { htmlAttributes = new { @class = "form-control", maxlength = 30, @placeholder = "E.g: Clean Alternative Fuel Vehicle Eligible", title = "This categorizes vehicle as Clean Alternative Fuel Vehicles (CAFVs) based on the fuel requirement and electric-only range requirement in House Bill 2042 as passed in the 2019 legislative session." } })
                 @Html.ValidationMessageFor(model => model.CAFV, "", new { @class = "text-danger" })
             </div>
         </div>

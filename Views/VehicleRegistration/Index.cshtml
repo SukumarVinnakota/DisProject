@@ -9,27 +9,32 @@
 <br />
 <div class="container">
     <div class="col-sm-12">
-        <div class="col-sm-1"></div>
+        <div class="col-sm-3"></div>
         <div class="col-sm-3">
             <a href="/VehicleRegistration/Create" class="btn btn-success" role="button" title="Register a Vehicle" data-toggle="tooltip">Register a Vehicle</a>
         </div>
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">
-            <a href="./Update_Vehcile.html" class="btn btn-success" role="button" title="Edit/Update Vehicle Registration" data-toggle="tooltip">Edit/Update Vehicle Registration</a>
-        </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-3">
-            <a href="./Delete_Vehcile.html" class="btn btn-success" role="button" title="Delete Vehicle Registration" data-toggle="tooltip">Delete Vehicle Registration</a>
+            <a href="/VehicleRegistration/Api" class="btn btn-success" role="button" title="Get Data from API" data-toggle="tooltip">Get Data from API</a>
+            @* <a href="./Delete_Vehcile.html" class="btn btn-success" role="button" title="Delete Vehicle Registration" data-toggle="tooltip">Delete Vehicle Registration</a>*@
         </div>
     </div>
 </div>
 <br />
 <p>
-    @using (Html.BeginForm("Delete", "VehicleRegistration", FormMethod.Get))
+    @using (Html.BeginForm("Search", "VehicleRegistration", FormMethod.Get))
     {
-        <b>Search Option:</b> @Html.TextBox("id") <input type="submit" value="search" />
-    }
-</p>
+        <div class="col-sm-12">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8">
+                <b>Search Vehicle Registration Id: </b> @Html.TextBox("id")  <input type="submit" value="search" class="btn btn-success" role="button" data-toggle="tooltip" title="Search" />
+
+            </div>
+        </div>
+        <br />
+            }
+    </p>
 <br>
 <br>
 <div class="container">
@@ -43,6 +48,7 @@
                 <th><a href="/VehicleRegistration/OrderByModel">Model</a></th>
                 <th>Model Year</th>
                 <th>Electric Vehicle Type</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
